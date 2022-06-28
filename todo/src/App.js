@@ -9,12 +9,12 @@ import TodoList from './TodoList'
 //tests
 
 function App() {
-	return (
-		<div>
-			<h1>TODO</h1>
-			<TodoList />
-		</div>
-	);
+   return (
+      <div>
+         <h1>TODO</h1>
+         <TodoList />
+      </div>
+   );
 }
 
 export default App;
