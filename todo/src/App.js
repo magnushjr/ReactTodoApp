@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
 import TodoList from './TodoList'
+
 //TODO
 //add checkbox
 //move state to service?
 //style it
+//tests
 
 function App() {
 	return (
