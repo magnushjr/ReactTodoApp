@@ -1,35 +1,24 @@
-import React from 'react'
-import InputForm from './InputForm'
+import React, { useState } from 'react';
+import InputForm from './InputForm';
 
-class TodoList extends React.Component {
-   constructor(props) {
-      super(props);
-      this.state = { items: [] };
-   }
-   
-   addItem = (item) => {
-      this.setState(prevState => ({
-         items: prevState.items.concat([item])
-      }));
-   }
+function TodoList(props) {
+   const [items, setItems] = useState(props.items ? props.items : []);
 	
-   render() {
-      const countMsg = this.state.items.length === 1
-         ? <p>You have {this.state.items.length} thing to do.</p>
-         : <p>You have {this.state.items.length} things to do.</p>;
+   const countMsg = items.length === 1
+         ? <p>You have {items.length} thing to do.</p>
+         : <p>You have {items.length} things to do.</p>;
 		
-      return (
-         <div>
-            {countMsg}
-            <ul>
-               {this.state.items.map((item) =>
-                  <li>{item}</li>
-               )}
-            </ul>
-            <InputForm prompt="Add" onSubmit={this.addItem} />
-         </div>
-      );
-   }
+   return (
+      <div>
+         {countMsg}
+         <ul>
+            {items.map((item, index) =>
+               <li key={index}>{item}</li>
+            )}
+         </ul>
+         <InputForm prompt="Add" onSubmit={(item) => setItems(items.concat([item]))} />
+      </div>
+   );
 }
 
 export default TodoList;

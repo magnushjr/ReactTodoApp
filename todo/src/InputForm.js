@@ -1,29 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-class InputForm extends React.Component {
-   constructor(props) {
-      super(props);
-      this.state = { value: "" };
-   }
-	
-   handleChange = (e) => {
-      this.setState({ value: e.target.value });
-   }
-	
-   onSubmit = (e) => {
+function InputForm(props) {
+   const [value, setValue] = useState("");
+   
+   function onSubmit(e) {
       e.preventDefault();
-      this.props.onSubmit(this.state.value);
-      this.setState({ value: "" });
+      props.onSubmit(value);
+      setValue("");
    }
-	
-   render() {
-      return (
-         <form>
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-            <button onClick={this.onSubmit}>{this.props.prompt}</button>
-         </form>
-      )
-   }
+   
+   return (
+      <form>
+         <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+         <button onClick={onSubmit}>{props.prompt}</button>
+      </form>
+   );
 }
 
 export default InputForm;
